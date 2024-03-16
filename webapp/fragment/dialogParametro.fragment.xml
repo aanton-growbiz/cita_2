@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified"
+xmlns:form="sap.ui.layout.form">
+    <Dialog titleAlignment="Center" horizontalScrolling="true" contentWidth="40rem" showHeader="true" icon="{= ${oInfo>/id} ? 'sap-icon://edit':'sap-icon://add'}" state="None" stretch="false" title="{= ${oInfo>/id} ? 'Editar':'Agregar'}" type="Standard" verticalScrolling="true">
+        <content>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:title/>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Código" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <VBox width="100%">
+                                        <Input liveChange="onRestartInput" placeholder="Ingrese Código" value="{oInfo>/codigoParametro}" editable="true"/>
+                                        <Text visible="{= ${oInfo>/msgCodigo} !== '' ? true : false}" text="{oInfo>/msgCodigo}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                    </VBox>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Descripción" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <VBox width="100%">
+                                        <Input liveChange="onRestartInput" placeholder="Ingrese Descripción" value="{oInfo>/descripcionParametro}" editable="true"/>
+                                        <Text visible="{= ${oInfo>/msgDescripcion} !== '' ? true : false}" text="{oInfo>/msgDescripcion}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                    </VBox>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+            
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="{= ${oInfo>/id} ? 'Editar':'Agregar'}" type="Accept" icon="{= ${oInfo>/id} ? 'sap-icon://edit':'sap-icon://save'}" iconFirst="true" tooltip="Guardar" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSaveParametro"/>
+            <Button text="Cancelar" type="Reject" icon="sap-icon://decline" iconFirst="true" tooltip="Cerrar" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCloseParametro"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

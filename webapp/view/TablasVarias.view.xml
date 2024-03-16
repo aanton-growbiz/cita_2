@@ -1,0 +1,392 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="compensar.citas.medicas.controller.TablasVarias" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<HBox alignItems="Center" backgroundDesign="Solid" justifyContent="SpaceBetween" alignContent="Center" height="3.25rem">
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <OverflowToolbarButton tooltip="Regresar" text="Regresar" icon="sap-icon://nav-back" press="onNavBack"/>
+            <Image src="../d3301125-07b9-4a27-bf15-4f1d039eaffb.compensarcitasmedicas.compensarcitasmedicas-0.0.1/images/compensar_logo.png" width="15em" visible="true" class="sapUiMediumMargin"/>
+            <Title text="Tablas Varias"></Title>
+        </HBox>
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <Button text="{= ${modelGeneral>/usuario/nombreLogin}}" type="Default" icon="sap-icon://employee" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin"/>
+            <Button text="Salir" press="onSalir" type="Emphasized" icon="sap-icon://open-command-field" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiMediumMarginEnd"/>
+        </HBox>
+    </HBox>
+    <Page showHeader="false" title="" showFooter="true" showNavButton="false">
+    <content>
+    <IconTabBar
+		id="idIconTabBarMulti"
+		expanded="true"
+        select="onChangeTab"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				icon="sap-icon://multi-select"
+				key="general"
+                text="Tabla General">
+                <content>
+				<Panel height="auto" width="100%" headerText="Mantenimiento de Tabla General" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <content>
+                        <form:Form width="70%" editable="true" visible="true">
+                            <form:title/>
+                            <form:formContainers>
+                                <form:FormContainer visible="true">
+                                    <form:formElements>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="Tabla" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <ComboBox id="cbo-tabla_general" selectionChange="onChangeFiltro" placeholder="Seleccionar una opción de consulta" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                    <items>
+                                                        <core:Item text="Tipos de documento Paciente" enabled="true" key="DOC_PACIENTE"/>
+                                                        <core:Item text="Tipos de documento del Profesional" enabled="true" key="DOC_PROFESIONAL"/>
+                                                        <core:Item text="Sedes" enabled="true" key="SEDE"/>
+                                                    </items>
+                                                </ComboBox>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Button press="onListTablaGeneral" id="btn-buscar" text="Buscar" type="Emphasized" icon="sap-icon://search" iconFirst="true" width="auto" enabled="false" visible="true" iconDensityAware="false"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                    </form:formElements>
+                                    <form:title/>
+                                </form:FormContainer>
+                            </form:formContainers>
+                            <form:layout>
+                                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                            </form:layout>
+                        </form:Form>
+                    </content>
+                </Panel>
+                
+                <Panel height="auto" width="100%" headerText="Listado de Tabla General" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <headerToolbar>
+                        <OverflowToolbar style="Clear">
+                            <Title text="Listado de Tabla General"/>
+                            <ToolbarSpacer width=""/>
+                            <Button id="btn-add_general" press="onAddTablasVarias" text="Agregar" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                            <Button id="btn-edit_general" press="onEditTablasVarias" text="Editar" type="Default" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                            <Button id="btn-delete_general" press="onDeleteTablasVarias" text="Eliminar" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <content>
+                    
+                        <table:Table
+                            id="tbl-tabla_general"
+                            rows="{listaTablaGeneral>/}"
+                            rowSelectionChange="onGetParametro"
+                            selectionMode="MultiToggle"
+                            showNoData="true"
+                            ariaLabelledBy="title"
+                            width="29.5rem">
+                            <table:extension/>
+                            <table:columns>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="Código" />
+                                    <table:template> 
+                                        <Text text="{listaTablaGeneral>codigoParametro}" wrapping="true" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="15rem">
+                                    <Label wrapping="true" text="Descripción" />
+                                    <table:template>
+                                        <Text text="{listaTablaGeneral>descripcionParametro}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        
+                    </content>
+                </Panel>
+                </content>
+			</IconTabFilter>
+			<IconTabFilter
+				icon="sap-icon://customer-briefing"
+				key="roles"
+                text="Tabla Roles">
+				<Panel visible="true" height="auto" width="100%" headerText="Mantenimiento de Tabla Roles" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <content>
+                        <form:Form width="70%" editable="true" visible="true">
+                            <form:title/>
+                            <form:formContainers>
+                                <form:FormContainer visible="true">
+                                    <form:formElements>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="Rol" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Input id="ipt-roles" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" required="false" valueStateText="Invalid entry" maxLength="20"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Button press="onFilterChange" id="btn-buscar-rol" text="Buscar" type="Emphasized" icon="sap-icon://search" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                    </form:formElements>
+                                    <form:title/>
+                                </form:FormContainer>
+                            </form:formContainers>
+                            <form:layout>
+                                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                            </form:layout>
+                        </form:Form>
+                    </content>
+                </Panel>
+                <Panel height="auto" width="100%" headerText="Lista de Roles" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                        <headerToolbar>
+                            <OverflowToolbar style="Clear">
+                                <Title text="Lista de Roles"/>
+                                <ToolbarSpacer width=""/>
+                                <Button press="onAddTablasRoles" text="Agregar" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                <Button press="onEditTablasRoles" text="Editar" type="Default" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                <Button press="onDeleteTablasRoles" text="Eliminar" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <content>
+                            <table:Table
+                                id="tbl-tabla_rol"
+                                rows="{listaTablaRol>/}"
+                                rowSelectionChange="onGetRol"
+                                selectionMode="MultiToggle"
+                                showNoData="true"
+                                ariaLabelledBy="title"
+                                width="35rem"
+                                >
+                                <table:extension>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Código" />
+                                        <table:template>
+                                            <Text text="{listaTablaRol>codigoParametro}" wrapping="false" />
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Descripción" />
+                                        <table:template>
+                                            <Text text="{listaTablaRol>descripcionParametro}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Acceso al Portal" />
+                                        <table:template>
+                                            <Text text="{= ${listaTablaRol>valorParametro} === 'true' ? 'Sí' : 'No'}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    </table:columns>
+                            </table:Table>
+                        </content>
+                    </Panel>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://bar-code" key="people" text="Tabla Token">
+				<Panel height="auto" width="100%" headerText="Mantenimiento de Tabla Token" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <content>
+                        <form:Form width="70%" editable="true" visible="true">
+                            <form:title/>
+                            <form:formContainers>
+                                <form:FormContainer visible="true">
+                                    <form:formElements>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="{listaTablaToken>/plantilla/descripcionParametro}" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                            <VBox width="100%">
+                                                <Input liveChange="onRestartInput" id="ipt-plantilla-valor" value="{listaTablaToken>/plantilla/valorParametro}" maxLength="100"/>
+                                                <Text text="{oTokenInfo>/msgPlantilla}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                            </VBox>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="{listaTablaToken>/asunto/descripcionParametro}" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <VBox width="100%">
+                                                    <Input liveChange="onRestartInput" id="ipt-asunto-valor" value="{listaTablaToken>/asunto/valorParametro}" type="Text" required="false" maxLength="100"/>
+                                                    <Text text="{oTokenInfo>/msgAsunto}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                                </VBox>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="{listaTablaToken>/sistema/descripcionParametro}" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <VBox width="100%">
+                                                    <Input liveChange="onRestartInput" id="ipt-sistema-valor" value="{listaTablaToken>/sistema/valorParametro}" type="Text" required="false" maxLength="100"/>
+                                                    <Text text="{oTokenInfo>/msgSistema}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                                </VBox>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="{listaTablaToken>/tiempo/descripcionParametro}" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <VBox width="100%">
+                                                    <Input liveChange="onRestartInput" id="ipt-tiempo-valor" value="{listaTablaToken>/tiempo/valorParametro}" type="Number" required="false" maxLength="2"/>
+                                                    <Text text="{oTokenInfo>/msgTiempo}" wrapping="true" maxLines="3" class="msgErrorTexto"/>
+                                                </VBox>
+                                                <Text text="minutos"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Button press="onUpdateToken" id="btn-actualizar-token" text="Actualizar" type="Emphasized" icon="sap-icon://refresh" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                    </form:formElements>
+                                    <form:title/>
+                                </form:FormContainer>
+                            </form:formContainers>
+                            <form:layout>
+                                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                            </form:layout>
+                        </form:Form>
+                    </content>
+                </Panel>
+			</IconTabFilter>
+            
+            <IconTabFilter
+				icon="sap-icon://employee"
+				key="usuarios"
+                text="Usuarios">
+                <content>
+				<Panel height="auto" width="100%" headerText="Mantenimiento de Usuarios" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <content>
+                        <form:Form width="70%" editable="true" visible="true">
+                            <form:title/>
+                            <form:formContainers>
+                                <form:FormContainer visible="true">
+                                    <form:formElements>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="Tabla" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Input id="ipt-buscar-user" placeholder="Ingrese nombre de usuario"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                        <form:FormElement visible="true">
+                                            <form:label>
+                                                <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            </form:label>
+                                            <form:fields>
+                                                <Button press="onListUsuarios" id="btn-buscar-user" text="Buscar" type="Emphasized" icon="sap-icon://search" iconFirst="true" width="auto" enabled="false" visible="true" iconDensityAware="false"/>
+                                            </form:fields>
+                                        </form:FormElement>
+                                    </form:formElements>
+                                    <form:title/>
+                                </form:FormContainer>
+                            </form:formContainers>
+                            <form:layout>
+                                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                            </form:layout>
+                        </form:Form>
+                    </content>
+                </Panel>
+                
+                <Panel height="auto" width="100%" headerText="Listado de Tabla Usuarios" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                    <headerToolbar>
+                        <OverflowToolbar style="Clear">
+                            <Title text="Listado de Tabla General"/>
+                            <ToolbarSpacer width=""/>
+                            <!--<Button id="btn-add_user" press="onAddUser" text="Agregar" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+                            <Button id="btn-edit_user" press="onEditUser" text="Editar" type="Default" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                            <!--<Button id="btn-delete_user" press="onDeleteUser" text="Eliminar" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <content>
+                    
+                        <table:Table
+                            id="tbl-tabla_user"
+                            rows="{listaUser>/}"
+                            rowSelectionChange="onGetUser"
+                            selectionMode="MultiToggle"
+                            showNoData="true"
+                            ariaLabelledBy="title"
+                            width="105rem">
+                            <table:extension/>
+                            <table:columns>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="Documento de Identidad" />
+                                    <table:template> 
+                                        <Text text="{listaUser>documentoIdentidad}" wrapping="true" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="20rem">
+                                    <Label wrapping="true" text="Nombre" />
+                                    <table:template>
+                                        <Text text="{listaUser>nombreUsuario}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="15rem">
+                                    <Label wrapping="true" text="Correo" />
+                                    <table:template>
+                                        <Text text="{listaUser>correo}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="10rem">
+                                    <Label wrapping="true" text="Administrador" />
+                                    <table:template>
+                                        <Text text="{= ${listaUser>flagAdmin} ? 'Sí' : 'No'}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="Celular" />
+                                    <table:template>
+                                        <Text text="{listaUser>celular}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="Grupo Logon" />
+                                    <table:template>
+                                        <Text text="{listaUser>grupoLogon}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="F. Inicio Vigencia" />
+                                    <table:template>
+                                        <Text text="{listaUser>fechaInicioVigencia}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column width="11rem">
+                                    <Label wrapping="true" text="F. Fin Vigencia" />
+                                    <table:template>
+                                        <Text text="{listaUser>fechaFinVigencia}" wrapping="true"/>
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+                        
+                    </content>
+                </Panel>
+                </content>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+    </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

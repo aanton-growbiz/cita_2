@@ -1,0 +1,243 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "compensar.citas.medicas",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.11.5",
+            "toolsId": "8f9ce410-2e30-413b-ba4c-a1362598b179"
+        },
+        "dataSources": {
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.120.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "compensar.citas.medicas.i18n.i18n"
+                }
+            },
+            "modelGeneral": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "library": "citas/medicas"
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "compensar.citas.medicas.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteloginPage",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetloginPage"
+                    ]
+                },
+                {
+                    "pattern": "Page1/:context:",
+                    "name": "Page1",
+                    "target": [
+                        "Page1"
+                    ]
+                },
+                {
+                    "pattern": "Page3/:context:",
+                    "name": "Page3",
+                    "target": [
+                        "Page3"
+                    ]
+                },
+                {
+                    "pattern": "Page4/:context:",
+                    "name": "Page4",
+                    "target": [
+                        "Page4"
+                    ]
+                },
+                {
+                    "pattern": "PageToken/:context:",
+                    "name": "PageToken",
+                    "target": [
+                        "PageToken"
+                    ]
+                },
+                {
+                    "pattern": "CreatePassword/:context:",
+                    "name": "CreatePassword",
+                    "target": [
+                        "CreatePassword"
+                    ]
+                },
+                {
+                    "pattern": "CitasMedicas/:context:",
+                    "name": "CitasMedicas",
+                    "target": [
+                        "CitasMedicas"
+                    ]
+                },
+                {
+                    "pattern": "TablasVarias/:context:",
+                    "name": "TablasVarias",
+                    "target": [
+                        "TablasVarias"
+                    ]
+                },
+                {
+                    "pattern": "CargaCitas/:context:",
+                    "name": "CargaCitas",
+                    "target": [
+                        "CargaCitas"
+                    ]
+                },
+                {
+                    "pattern": "CargaUsuarios/:context:",
+                    "name": "CargaUsuarios",
+                    "target": [
+                        "CargaUsuarios"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetloginPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "loginPage",
+                    "viewName": "loginPage"
+                },
+                "Page1": {
+                    "controlAggregation": "pages",
+                    "viewName": "Page1",
+                    "viewId": "Page1",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "Page3": {
+                    "controlAggregation": "pages",
+                    "viewName": "Page3",
+                    "viewId": "Page3",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "Page4": {
+                    "controlAggregation": "pages",
+                    "viewName": "Page4",
+                    "viewId": "Page4",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "PageToken": {
+                    "controlAggregation": "pages",
+                    "viewName": "PageToken",
+                    "viewId": "PageToken",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "CreatePassword": {
+                    "controlAggregation": "pages",
+                    "viewName": "CreatePassword",
+                    "viewId": "CreatePassword",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "CitasMedicas": {
+                    "controlAggregation": "pages",
+                    "viewName": "CitasMedicas",
+                    "viewId": "CitasMedicas",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "TablasVarias": {
+                    "controlAggregation": "pages",
+                    "viewName": "TablasVarias",
+                    "viewId": "TablasVarias",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "CargaCitas": {
+                    "controlAggregation": "pages",
+                    "viewName": "CargaCitas",
+                    "viewId": "CargaCitas",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                },
+                "CargaUsuarios": {
+                    "controlAggregation": "pages",
+                    "viewName": "CargaUsuarios",
+                    "viewId": "CargaUsuarios",
+                    "viewLevel": 1,
+                    "transition": "slide"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "compensar.citas.medicas.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "compensarcitasmedicas"
+    }
+}

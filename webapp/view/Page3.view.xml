@@ -1,0 +1,55 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="compensar.citas.medicas.controller.NewPassword" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Page showHeader="true" title="" showFooter="false" showNavButton="true">
+        <content>
+            <HBox backgroundDesign="Solid" alignItems="Center" direction="Column" fitContainer="false" width="100%" height="100%" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
+                <items>
+                    <Image src="../d3301125-07b9-4a27-bf15-4f1d039eaffb.compensarcitasmedicas.compensarcitasmedicas-0.0.1/images/logo_compensar.png" width="33em" visible="true"/>
+                    <VBox justifyContent="Center" alignItems="Center" class="sapUiFormatoLogin">
+                    <form:Form width="533px" editable="true" visible="true" class="sapUiSmallMarginBottom sapUiFormatoLogin">
+                        <form:title/>
+                        <form:formContainers>
+                            <form:FormContainer visible="true">
+                                <form:formElements>
+                                    <form:FormElement visible="true">
+                                        <form:label>
+                                            <Label text="Tipo de Documentos de identidad" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Select editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                <items>
+                                                    <core:Item text="Cédula de Ciudadanía" enabled="true" key="Item"/>
+                                                </items>
+                                            </Select>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement visible="true">
+                                        <form:label>
+                                            <Label text="Número de Documento de Identidad" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Input id="ipt-num_documento" type="Number" showValueHelp="false" enabled="true" visible="true" width="auto" required="false" valueStateText="Invalid entry" maxLength="15"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                                <form:title/>
+                            </form:FormContainer>
+                        </form:formContainers>
+                        <form:layout>
+                            <form:ResponsiveGridLayout backgroundDesign="Solid" adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                        </form:layout>
+                    </form:Form>
+                    <Button text="Generar Contraseña" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSendToken"/>
+                    <VBox width="100%" justifyContent="Start" alignItems="Stretch" alignContent="Stretch" class="sapUiFormatoLogin">
+                        <Text text="{modelGeneral>/msgGeneraToken}" class="msgErrorTexto sapUiSmallMargin"/>
+                    </VBox>
+                    </VBox>
+                </items>
+                <layoutData/>
+            </HBox>
+        </content>
+        <footer/>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

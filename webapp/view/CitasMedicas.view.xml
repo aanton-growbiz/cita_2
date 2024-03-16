@@ -1,0 +1,257 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="compensar.citas.medicas.controller.CitasMedicas" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+    <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="SpaceBetween" alignContent="Center" height="3.25rem">
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <OverflowToolbarButton tooltip="Regresar" text="Regresar" icon="sap-icon://nav-back" press="onNavBack"/>
+            <Image src="../d3301125-07b9-4a27-bf15-4f1d039eaffb.compensarcitasmedicas.compensarcitasmedicas-0.0.1/images/compensar_logo.png" width="15em" visible="true" class="sapUiMediumMargin"/>
+            <Title text="Citas Médicas"></Title>
+        </HBox>   
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <Button text="{= ${modelGeneral>/usuario/nombreLogin}}" type="Default" icon="sap-icon://employee" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin"/>
+            <Button text="Salir" press="onSalir" type="Emphasized" icon="sap-icon://open-command-field" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiMediumMarginEnd"/>
+        </HBox>  
+    </HBox>
+    <Page showHeader="true" title="Consulta de Citas Médicas" showFooter="true" showNavButton="false">
+        <content>
+            <Panel height="auto" width="100%" headerText="Filtros de Búsqueda" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                <content>
+                    <form:Form width="70%" editable="true" visible="true">
+                        <form:title/>
+                        <form:formContainers>
+                            <form:FormContainer visible="true">
+                                <form:formElements>
+                                    <form:FormElement visible="true">
+                                        <form:label>
+                                            <Label text="Opciones de consultas" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <ComboBox id="cbo-opciones" selectionChange="onChangeFiltro" placeholder="Seleccionar una opción de consulta" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                <items>
+                                                    <core:Item text="Por Paciente" enabled="true" key="1"/>
+                                                    <core:Item text="Por Profesional" enabled="true" key="2"/>
+                                                    <core:Item text="Por Sede" enabled="true" key="3"/>
+                                                    <core:Item text="Por Especialidad" enabled="true" key="4"/>
+                                                </items>
+                                            </ComboBox>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_fecha" visible="true">
+                                        <form:label>
+                                            <Label text="Fecha" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <DatePicker id="dp-fecha" valueFormat="dd-MM-yyyy" displayFormat="dd/MM/yyyy"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_tipo_paciente" visible="true">
+                                        <form:label>
+                                            <Label text="Tipo de documento del paciente" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <ComboBox id="cbo-tipo_documento_paciente" items="{path: 'listaDocumentoPaciente>/',filters: [{path : 'codigoPadre', operator : 'EQ', value1 : 'DOC_PACIENTE'}]}" placeholder="Seleccionar tipo de documento" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                <items>
+                                                    <core:Item text="{listaDocumentoPaciente>descripcionParametro}" enabled="true" key="{listaDocumentoPaciente>codigoParametro}"/>
+                                                </items>
+                                            </ComboBox>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_nro_paciente" visible="true">
+                                        <form:label>
+                                            <Label text="N° de documento del paciente" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Input placeholder="Ingrese un número de documento de un paciente" id="ipt-nro_documento_paciente" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_tipo_profesional" visible="true">
+                                        <form:label>
+                                            <Label text="Tipo de documento Profesional" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <ComboBox id="cbo-tipo_documento_profesional" items="{path: 'listaDocumentoPaciente>/',filters: [{path : 'codigoPadre', operator : 'EQ', value1 : 'DOC_PROFESIONAL'}]}" placeholder="Seleccionar tipo de documento" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                <items>
+                                                    <core:Item text="{listaDocumentoPaciente>descripcionParametro}" enabled="true" key="{listaDocumentoPaciente>codigoParametro}"/>
+                                                </items>
+                                            </ComboBox>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_nro_profesional" visible="true">
+                                        <form:label>
+                                            <Label text="N° de documento Profesional" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Input placeholder="Ingrese un número de documento de un profesional" id="ipt-nro_documento_profesional" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_sede" visible="true">
+                                        <form:label>
+                                            <Label text="Nombre de sede" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <ComboBox id="cbo-sede" items="{path: 'listaDocumentoPaciente>/',filters: [{path : 'codigoPadre', operator : 'EQ', value1 : 'SEDE'}]}" placeholder="Seleccione una sede" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                                                <items>
+                                                    <core:Item text="{listaDocumentoPaciente>descripcionParametro}" enabled="true" key="{listaDocumentoPaciente>codigoParametro}"/>
+                                                </items>
+                                            </ComboBox>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement id="fe_servicio" visible="true">
+                                        <form:label>
+                                            <Label text="Código de servicio" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Input placeholder="Ingrese un código de servicio" id="ipt-codigo_servicio" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" required="false" valueStateText="Invalid entry" maxLength="12"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                    <form:FormElement visible="true">
+                                        <form:label>
+                                            <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </form:label>
+                                        <form:fields>
+                                            <Button press="onSearchCitasMedicas" id="btn-buscar" text="Buscar" type="Emphasized" icon="sap-icon://search" iconFirst="true" width="auto" enabled="false" visible="true" iconDensityAware="false"/>
+                                        </form:fields>
+                                    </form:FormElement>
+                                </form:formElements>
+                                <form:title/>
+                            </form:FormContainer>
+                        </form:formContainers>
+                        <form:layout>
+                            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                        </form:layout>
+                    </form:Form>
+                </content>
+            </Panel>
+            <Panel height="auto" width="100%" headerText="Resultados" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid">
+                        <headerToolbar>
+                            <OverflowToolbar style="Clear">
+                                <Title text="Resultados"/>
+                                <ToolbarSpacer width=""/>
+                                <Button press="onDownloadCitasMedicas" text="Descargar Archivo" type="Default" icon="sap-icon://download" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <content>
+                            <table:Table
+                                id="tbl-citas_medicas"
+                                rows="{listaCitasMedicas>/}"
+                                visibleRowCount="{= ${listaCitasMedicas>/}.length}"
+                                selectionMode="None"
+                                showNoData="true"
+                                ariaLabelledBy="title"
+                                width="180rem">
+                                <table:extension>
+                                    <OverflowToolbar style="Clear">
+                                        
+                                    </OverflowToolbar>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Tipo de identificación del paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>tipoIdentificacionPaciente}" wrapping="false" />
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="N° identificación del paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>numeroIdentificacionPaciente}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Nombre de Paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>nombrePaciente}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="N° celular del paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>numeroCelularPaciente}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Fecha programada de la cita" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>fechaProgramadaCita}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Hora programada de la cita" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>horaProgramadaCita}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Descripción de la especialidad de la unidad organizativa" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>descUnidadOrganizativa}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Código SAP de prestación del servicio" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>codPrestacionServicio}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="N° de autorización" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>numeroAutorizacion}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Valor a pagar de la cita" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>valorAPagar}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Código de aseguradora del paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>codAseguradoraPaciente}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Nombre de aseguradora del paciente" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>nombreAseguradoraPaciente}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Punto de atención" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>puntoAtencion}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text=" Nombre del profesional" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>nombreProfesional}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Nombre sede" />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>nombreSede}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="11rem">
+                                        <Label wrapping="true" text="Código sede SAP " />
+                                        <table:template>
+                                            <Text text="{listaCitasMedicas>codigoSedeSap}"/>
+                                        </table:template>
+                                    </table:Column>
+                               	</table:columns>
+                            </table:Table>
+                        </content>
+                    </Panel>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

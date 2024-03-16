@@ -1,0 +1,75 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="compensar.citas.medicas.controller.Main" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout= "sap.ui.layout">
+    <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="SpaceBetween" alignContent="Center" height="3.25rem">
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <Image src="../d3301125-07b9-4a27-bf15-4f1d039eaffb.compensarcitasmedicas.compensarcitasmedicas-0.0.1/images/compensar_logo.png" width="15em" visible="true" class="sapUiMediumMargin"/>
+            <Title text="Página Principal"></Title>
+        </HBox>   
+        <HBox alignItems="Center" backgroundDesign="Solid" justifyContent="Start" alignContent="Center" height="3.25rem">
+            <Button text="{= ${modelGeneral>/usuario/nombreLogin}}" type="Default" icon="sap-icon://employee" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin"/>
+            <Button text="Salir" press="onSalir" type="Emphasized" icon="sap-icon://open-command-field" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiMediumMarginEnd"/>
+        </HBox>   
+    </HBox>   
+    <Page showHeader="false" title="Pagina Principal" showFooter="true" showNavButton="false">
+        <content>
+            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                <items>
+                    <Title text="Consultas" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiMediumMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
+                    <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                        <items>
+                            <GenericTile press="onCitasMedicas" header="Citas médicas" subheader="" frameType="OneByOne" class="sapUiMediumMarginBegin sapUiMediumMarginEnd">
+                                <tileContent>
+                                    <TileContent footer="" unit="">
+                                        <ImageContent src="sap-icon://clinical-order" />
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </items>
+                        <layoutData/>
+                    </HBox>
+                    <Title text="Mantenimientos" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiMediumMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
+                    <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                        <items>
+                            <GenericTile press="onTablasVarias" header="Tablas Varias" subheader="" frameType="OneByOne" class="sapUiMediumMarginBegin sapUiMediumMarginEnd">
+                                <tileContent>
+                                    <TileContent footer="" unit="">
+                                        <ImageContent src="sap-icon://enablement" />
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </items>
+                        <layoutData/>
+                    </HBox>
+                    <Title text="Carga de archivos" titleStyle="H5" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiMediumMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
+                    <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                        <items>
+                            <GenericTile press="onCargaCitas" header="Citas médicas" subheader="" frameType="OneByOne" class="sapUiMediumMarginBegin sapUiMediumMarginEnd">
+                                <tileContent>
+                                    <TileContent footer="" unit="">
+                                        <ImageContent src="sap-icon://sys-first-page" />
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                            <GenericTile press="onCargaUsuarios" header="Usuarios" subheader="" frameType="OneByOne" class="sapUiLargeMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">
+                                <tileContent/>
+                                <TileContent footer="" unit="">
+                                        <ImageContent src="sap-icon://personnel-view" />
+                                    </TileContent>
+                            </GenericTile>
+                        </items>
+                        <layoutData/>
+                    </HBox>
+                </items>
+                <layoutData/>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>
